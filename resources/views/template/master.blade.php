@@ -75,6 +75,15 @@
                 </div>
             </li>
 
+            {{-- STUDENT SECTION --}}
+            <hr>
+            <span class="text-light px-3">Students Section</span>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('resquest.create') }}">
+                    </i><i class="fas fa-tools"></i>
+                    <span>Equipment Request</span></a>
+            </li>
+
 
 
 
