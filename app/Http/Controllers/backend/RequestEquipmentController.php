@@ -19,7 +19,9 @@ class RequestEquipmentController extends Controller
      */
     public function index()
     {
-        //
+        $equipmentProvide = EquipmentProvide::with('equipment')->where('approved', 0)->simplePaginate(15);
+
+        return view('backend.request.requestApprove', compact('equipmentProvide'));
     }
 
     /**
@@ -39,11 +41,12 @@ class RequestEquipmentController extends Controller
                 $q->select('equipment_name');
             }]
         )->where('user_id', Auth::user()->id)
-            ->get();
+            ->simplePaginate(15);
+        // dd($allRequests);
 
-        // studentClearence for test
-        $studentClearence = User::with('equipmentProvides.equipment')->where('id', 1)->first();
-        dd($studentClearence);
+        // studentClearence for test => [FOR REFERENCE]
+        // $studentClearence = User::with('equipmentProvides.equipment')->where('id', 1)->first();
+        // dd($studentClearence);
 
         return view('backend.request.create', compact('departments', 'equipments', 'allRequests'));
     }
@@ -91,7 +94,12 @@ class RequestEquipmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $equipmentProvide = EquipmentProvide::find($id);
+        $equipmentProvide->approved = 1;
+        $equipmentProvide->save();
+
+
+        return back()->with('success', 'Equipment Assisgned Successfully');
     }
 
     /**
@@ -114,7 +122,10 @@ class RequestEquipmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $equipmentProvide = EquipmentProvide::find($id);
+        $equipmentProvide->equipment()->detach();
+        $equipmentProvide->forceDelete();
+        return back()->with('success', 'Request Denied!!!');
     }
 
 
@@ -126,5 +137,28 @@ class RequestEquipmentController extends Controller
         $department_id = $request->department;
         $labs = Category::where('parent_id', $department_id)->select('id', 'name')->toBase()->get();
         return $labs;
+    }
+
+
+    /**
+     * RETURN NOTIFICATION FOR CRAFT INSPECTOR
+     */
+    public function returnEquipment($id)
+    {
+        $returnEquipment = EquipmentProvide::find($id);
+        $returnEquipment->isReturn = 2; // PENDING FOR RETURN CONFIRMATION
+        $returnEquipment->save();
+        return back()->with('success', 'Returning Equipment is in processing...');
+    }
+
+
+    /**
+     *  VIEW ALL RETURN REQUEST
+     */
+    public function returnEquipmentRequest()
+    {
+        $returnEquipmentRequest = EquipmentProvide::with('equipment')->where('isReturn', 2)->where('approved', 1)->paginate(15);
+        // dd($returnEquipmentRequest);
+        return view('backend.request.allReturnRequest', compact('returnEquipmentRequest'));
     }
 }

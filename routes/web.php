@@ -43,3 +43,7 @@ Route::resource('/equipment', EquipmentController::class);
 // REQUEST EQUIPMENT ROUTES
 Route::POST('/request/lab', [RequestEquipmentController::class, 'onlyLab'])->name('request.lab');
 Route::resource('/resquest', RequestEquipmentController::class);
+
+// REQUEST FOR RETURNING EQUIPMENT CONFIRMATION
+Route::GET('/request/confirmation/{id}', [RequestEquipmentController::class, 'returnEquipment'])->name('request.confirmation');
+Route::GET('/request/confirm-request', [RequestEquipmentController::class, 'returnEquipmentRequest'])->name('request.confirm.request');

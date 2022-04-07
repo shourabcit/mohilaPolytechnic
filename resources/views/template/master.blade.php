@@ -75,6 +75,18 @@
                 </div>
             </li>
 
+            <hr>
+            <span class="text-light px-3">Craft Inspector Section</span>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('resquest.index') }}">
+                    </i><i class="fas fa-tools"></i>
+                    <span>Requested Equipments</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('request.confirm.request') }}">
+                    </i><i class="fas fa-tools"></i>
+                    <span>Returned Equipments</span></a>
+            </li>
             {{-- STUDENT SECTION --}}
             <hr>
             <span class="text-light px-3">Students Section</span>

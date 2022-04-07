@@ -108,12 +108,16 @@
                                 @endforeach
 
                             </td>
-                            <td>Return</td>
+                            <td>
+                                <a href="{{ route('request.confirmation', $activeRequest->id) }}"
+                                    class="btn btn-success btn-sm">
+                                    {{ $activeRequest->isReturn == 0 ? 'Return' : 'Processing...' }}</a>
+                            </td>
                         </tr>
                         @endif
                         @endforeach
                     </table>
-
+                    <span>{{ $allRequests->links() }}</span>
 
 
                 </div>
@@ -146,13 +150,29 @@
                         @endif
                         @endforeach
                     </table>
-
+                    <span>{{ $allRequests->links() }}</span>
                 </div>
 
             </div>
         </div>
     </div>
 </div>
+{{-- BOOTSTRAP TOAST FOR SUCCESS MSG --}}
+@if (session()->has('success'))
+
+
+<div class="toast show" role="alert" aria-live="assertive" aria-atomic="true"
+    style="position: absolute; min-width: 300px;max-width:100%;right: 50px; bottom: 80px">
+    <div class="toast-header justify-content-between bg-primary text-light">
+        <strong class="me-auto">Mohila Polytechnic</strong>
+
+        <button type="button" class="btn-close btn float-end text-light" data-bs-dismiss="toast" aria-label="Close"><i
+                class="fas fa-times"></i></button>
+    </div>
+    <div class="toast-body">{{ session('success') }}</div>
+</div>
+@endif
+{{-- BOOTSTRAP TOAST FOR SUCCESS MSG END --}}
 @endsection
 
 @section('custom_js')
