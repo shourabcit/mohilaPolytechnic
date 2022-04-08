@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Clearence;
 use App\Models\EquipmentProvide;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -59,5 +60,15 @@ class User extends Authenticatable
     public function equipmentProvides()
     {
         return $this->hasMany(EquipmentProvide::class);
+    }
+
+
+    /**
+     * CLEARENCE RELATION WITH USER
+     * ONE TO MANY
+     */
+    public function clearence()
+    {
+        return $this->hasMany(Clearence::class);
     }
 }

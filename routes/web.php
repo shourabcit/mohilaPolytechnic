@@ -7,6 +7,8 @@ use App\Http\Controllers\backend\RequestEquipment;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\EquipmentController;
 use App\Http\Controllers\backend\RequestEquipmentController;
+use App\Http\Controllers\ClearenceController;
+use App\Models\Clearence;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -26,7 +28,7 @@ Route::resource('/category', CategoryController::class);
 
 
 // EQUIPMENT CONTROLLER
-Route::delete('/equipment/delete/{id}', [EquipmentController::class, 'destroy'])->name('equipment.destroy');
+
 
 Route::get('/trash/equipment', [EquipmentController::class, 'equipmentTrash'])->name('equipment.trash');
 
@@ -48,3 +50,11 @@ Route::resource('/resquest', RequestEquipmentController::class);
 Route::GET('/request/confirmation/{id}', [RequestEquipmentController::class, 'returnEquipment'])->name('request.confirmation');
 Route::GET('/request/confirm-request', [RequestEquipmentController::class, 'returnEquipmentRequest'])->name('request.confirm.request');
 Route::GET('/request/accepted/{id}', [RequestEquipmentController::class, 'requestAccepted'])->name('request.accept');
+
+
+
+//REQUEST FOR CLEARENCE SYSTEM
+Route::GET('/clearence/{id}', [ClearenceController::class, 'getClearenceRequest'])->name('clearence.getRequest');
+
+// CLEARENCE REQUEST FOR CRAFT INSPECTOR
+Route::GET('/clear/craft', [ClearenceController::class, 'craftClearence'])->name('clearence.craft');

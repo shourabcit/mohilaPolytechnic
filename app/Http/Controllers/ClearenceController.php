@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Clearence;
+use Illuminate\Http\Request;
+
+class ClearenceController extends Controller
+{
+    public function getClearenceRequest($id)
+    {
+        //CHECK IF STUDENT ALREADY HAS A REQUEST
+        if (Clearence::where('user_id',  $id)->exists()) {
+            return back()->with('success', 'Your Request is processing. Please wait patiently.');
+        } else {
+
+            $clearence = new Clearence();
+            $clearence->user_id = 1;
+            $clearence->save();
+            return back()->with('success', 'Request Has been send.');
+        }
+    }
+
+
+    /**
+     * CRAFT CLEARENCE FOR CRAFT INSPECTOR
+     */
+    public function craftClearence()
+    {
+        $requests = Clearence::where('craftinspector', 0)
+            ->where('workshopsuper', 0)
+            ->where('depthead', 0)
+            ->where('register', 0)
+            ->where('viceprincipal', 0)
+            ->where('principal', 0)
+            ->with(['user' => function ($q) {
+                $q->withCount(['equipmentProvides' => function ($query) {
+                    $query->where('isReturn', 0);
+                }]);
+            }])
+            ->get();
+
+        dd($requests);
+    }
+}

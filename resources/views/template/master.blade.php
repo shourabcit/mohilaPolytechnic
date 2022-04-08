@@ -87,6 +87,11 @@
                     </i><i class="fas fa-tools"></i>
                     <span>Returned Equipments</span></a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('clearence.craft') }}">
+                    </i><i class="fas fa-tools"></i>
+                    <span>Clearence Requests</span></a>
+            </li>
             {{-- STUDENT SECTION --}}
             <hr>
             <span class="text-light px-3">Students Section</span>

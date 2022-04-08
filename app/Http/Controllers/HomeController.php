@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clearence;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,10 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $activityLog = User::where('id', Auth::user()->id)->whereHas('equipmentProvides', function ($q) {
-            $q->where('approved', 1);
-        })->with('equipmentProvides.equipment')->first();
-        // dd($activityLog);
+
+
+        $activityLog = User::where('id', Auth::user()->id)->with(['equipmentProvides' => function ($q) {
+            $q->where('approved', 1)->with('equipment')->latest();
+        }])->first();
+
         return view('home', compact('activityLog'));
     }
 }
