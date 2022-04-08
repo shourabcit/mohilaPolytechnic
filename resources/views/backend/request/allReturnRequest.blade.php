@@ -30,7 +30,7 @@
                         @endforeach
                     </td>
                     <td>
-                        <a href="#" class="btn btn-success">Approved</a>
+                        <a href="{{ route('request.accept', $returnItem->id) }}" class="btn btn-success">Approved</a>
                     </td>
                 </tr>
                 @empty

@@ -47,3 +47,4 @@ Route::resource('/resquest', RequestEquipmentController::class);
 // REQUEST FOR RETURNING EQUIPMENT CONFIRMATION
 Route::GET('/request/confirmation/{id}', [RequestEquipmentController::class, 'returnEquipment'])->name('request.confirmation');
 Route::GET('/request/confirm-request', [RequestEquipmentController::class, 'returnEquipmentRequest'])->name('request.confirm.request');
+Route::GET('/request/accepted/{id}', [RequestEquipmentController::class, 'requestAccepted'])->name('request.accept');

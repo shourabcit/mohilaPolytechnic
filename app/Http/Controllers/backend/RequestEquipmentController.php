@@ -40,7 +40,7 @@ class RequestEquipmentController extends Controller
             ['equipment' => function ($q) {
                 $q->select('equipment_name');
             }]
-        )->where('user_id', Auth::user()->id)
+        )->where('isReturn', '!=', 1)->where('user_id', Auth::user()->id)
             ->simplePaginate(15);
         // dd($allRequests);
 
@@ -160,5 +160,17 @@ class RequestEquipmentController extends Controller
         $returnEquipmentRequest = EquipmentProvide::with('equipment')->where('isReturn', 2)->where('approved', 1)->paginate(15);
         // dd($returnEquipmentRequest);
         return view('backend.request.allReturnRequest', compact('returnEquipmentRequest'));
+    }
+
+
+    /**
+     * REQUEST ACCEPTED FUNCTION 
+     */
+    public function requestAccepted($id)
+    {
+        $returnItem = EquipmentProvide::find($id);
+        $returnItem->isReturn = 1;
+        $returnItem->save();
+        return back();
     }
 }
