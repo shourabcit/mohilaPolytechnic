@@ -16,14 +16,14 @@ class AdminSeeder extends Seeder
     public function run()
     {
         Admin::create([
-            'name' => 'shourab',
+            'name' => 'admin shourab',
             'email' => 'shourab.cit.bd@gmail.com',
             'phone' => '01997492233',
             'img' => 'https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg',
             'password' => Hash::make('password'),
         ]);
         Admin::create([
-            'name' => 'zahid',
+            'name' => 'admin zahid',
             'email' => 'zahid.cit.bd@gmail.com',
             'phone' => '01847422963',
             'img' => 'https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg',

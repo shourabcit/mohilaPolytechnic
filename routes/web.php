@@ -62,6 +62,29 @@ Route::GET('/clear/view/{id}/{count}', [ClearenceController::class, 'studentClea
 
 // CLEARENCE REQUEST FOR CRAFT INSPECTOR
 Route::GET('/clear/craft', [ClearenceController::class, 'craftClearence'])->name('clearence.craft');
+Route::GET('/approve/craft/{id}', [ClearenceController::class, 'craftApproval'])->name('approve.craft');
+
+// CLEARENCE REQUEST FOR WORKSHOP SUPER
+Route::GET('/clear/worksuper', [ClearenceController::class, 'workshopClearence'])->name('clearence.worksuper');
+Route::GET('/approve/worksuper/{id}', [ClearenceController::class, 'workApproval'])->name('approve.worksuper');
+
+// CLEARENCE REQUEST FOR DEPT HAED
+Route::GET('/clear/depthead', [ClearenceController::class, 'deptHeadClearence'])->name('clearence.depthead');
+Route::GET('/approve/depthead/{id}', [ClearenceController::class, 'deptHeadApproval'])->name('approve.depthead');
+
+// CLEARENCE REQUEST FOR REGISTER
+Route::GET('/clear/register', [ClearenceController::class, 'registerClearence'])->name('clearence.register');
+Route::GET('/approve/register/{id}', [ClearenceController::class, 'registerApproval'])->name('approve.register');
+
+// CLEARENCE REQUEST FOR PRINCIPAL
+Route::GET('/clear/viceprincipal', [ClearenceController::class, 'vicePrincipalClearence'])->name('clearence.viceprincipal');
+Route::GET('/approve/viceprincipal/{id}', [ClearenceController::class, 'vicePrincipalApproval'])->name('approve.viceprincipal');
+
+// CLEARENCE REQUEST FOR PRINCIPAL
+Route::GET('/clear/principal', [ClearenceController::class, 'principalClearence'])->name('clearence.principal');
+Route::GET('/approve/principal/{id}', [ClearenceController::class, 'principalApproval'])->name('approve.principal');
+
+
 
 
 //Admin Login & Register
@@ -69,8 +92,10 @@ Route::get('admin', [AdminAuthController::class, 'login_index'])->name('admin.lo
 Route::post('admin', [AdminAuthController::class, 'login'])->name('admin.login');
 
 
-Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
-    Route::get('/dashboard', [AdminAuthController::class,'dashboard'])->name('dashboard');
 
-    Route::post('logout',[AdminAuthController::class,'logout'])->name('logout');
+// ADMIN PART ROUTES
+Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
+    Route::get('/dashboard', [AdminAuthController::class, 'dashboard'])->name('dashboard');
+
+    Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

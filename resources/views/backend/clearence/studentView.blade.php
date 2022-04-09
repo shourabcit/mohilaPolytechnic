@@ -14,19 +14,23 @@
                 </div>
                 <div class="col-md-8 border-left px-lg-4">
                     <div class="student_info">
-                        <span class="btn btn-success rounded-0 btn-sm float-right">Clear</span>
+                        <span
+                            class="btn {{ $count == 0 ? 'btn-success' : 'btn-danger' }} rounded-0 btn-sm float-right">{{
+                            $count == 0 ? 'Clear' : 'Not Clear' }} </span>
                         <h2 class="text-dark text-uppercase">{{ $studentInfo->name }} </h2>
                         <p>Email Address : - {{ $studentInfo->email }}</p>
                         <p>Phone Number: - {{ $studentInfo->phone }}</p>
-                        <p>Department: - {{ App\Models\Category::find($studentInfo->student->department_id,
-                            ['name'])->name
-                            }}</p>
+                        @if ($studentInfo->student)
+
+                        <p>Department: - {{ $studentInfo->student->department_id }}
+                        </p>
                         <p>Board Roll: - {{ $studentInfo->student->board_roll }} | Registration Number: - {{
                             $studentInfo->student->registation_number }}</p>
                         <p></p>
                         <p>Session: - {{ $studentInfo->student->session }}</p>
                         <p>Semister: - {{ $studentInfo->student->semester }}</p>
                         <p>Exam Year: - {{ $studentInfo->student->exam_year }}</p>
+                        @endif
                     </div>
 
                 </div>

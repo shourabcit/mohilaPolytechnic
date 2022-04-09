@@ -21,7 +21,7 @@
                         <img src="{{ $request->user->img }}" alt="{{ $request->user->name }}" style="height: 100px">
                     </td>
                     <td>
-                        <a href="#"
+                        <a href="{{ route('clearence.view', ['id'=>$request->user->id, 'count'=>$request->user->equipment_provides_count]) }}"
                             class="{{ $request->user->equipment_provides_count > 0 ? 'text-light' : 'text-dark' }}">{{
                             $request->user->name }}</a>
                     </td>
@@ -31,7 +31,24 @@
                     <td>
                         <a href="{{ route('clearence.view', ['id'=>$request->user->id, 'count'=>$request->user->equipment_provides_count]) }}"
                             class="btn btn-primary btn-sm">View</a>
-                        <a href="#" class="btn btn-success btn-sm">Approve</a>
+                        @if (Auth::guard('admin')->user()->getRoleNames()->first() == 'craft instructor')
+                        <a href="{{ route('approve.craft', $request->id) }}" class="btn btn-success btn-sm">Approve</a>
+                        @elseif (Auth::guard('admin')->user()->getRoleNames()->first() == 'workshop super')
+                        <a href="{{ route('approve.worksuper', $request->id) }}"
+                            class="btn btn-success btn-sm">Approve</a>
+                        @elseif (Auth::guard('admin')->user()->getRoleNames()->first() == 'dept head')
+                        <a href="{{ route('approve.depthead', $request->id) }}"
+                            class="btn btn-success btn-sm">Approve</a>
+                        @elseif (Auth::guard('admin')->user()->getRoleNames()->first() == 'register')
+                        <a href="{{ route('approve.register', $request->id) }}"
+                            class="btn btn-success btn-sm">Approve</a>
+                        @elseif (Auth::guard('admin')->user()->getRoleNames()->first() == 'vice principal')
+                        <a href="{{ route('approve.viceprincipal', $request->id) }}"
+                            class="btn btn-success btn-sm">Approve</a>
+                        @elseif (Auth::guard('admin')->user()->getRoleNames()->first() == 'principal')
+                        <a href="{{ route('approve.principal', $request->id) }}"
+                            class="btn btn-success btn-sm">Approve</a>
+                        @endif
                     </td>
                 </tr>
                 @empty
