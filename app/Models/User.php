@@ -15,9 +15,9 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
 
-    public function Student()
+    public function student()
     {
-        return $this->hasMany(Student::class);
+        return $this->hasOne(Student::class);
     }
 
     /**

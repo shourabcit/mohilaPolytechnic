@@ -75,7 +75,8 @@
                 </div>
             </li>
 
-            <hr>
+            <hr class="sidebar-divider">
+            {{-- CRAFT INSPECTOR SECTION START --}}
             <span class="text-light px-3">Craft Inspector Section</span>
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('resquest.index') }}">
@@ -92,14 +93,30 @@
                     </i><i class="fas fa-tools"></i>
                     <span>Clearence Requests</span></a>
             </li>
-            {{-- STUDENT SECTION --}}
-            <hr>
+            {{-- CRAFT INSPECTOR SECTION ENDS --}}
+            {{-- WORKSHOP SUPER SECTION STARTS --}}
+            <hr class="sidebar-divider">
+            <span class="text-light px-3">Workshop Super Section</span>
+            <li class="nav-item ">
+                <a class="nav-link" href="#">
+                    </i><i class="fas fa-tools"></i>
+                    <span>Clearence Requests</span></a>
+            </li>
+            {{-- WORKSHOP SUPER SECTION ENDS --}}
+
+
+
+
+            {{-- STUDENT SECTION START--}}
+            <hr class="sidebar-divider">
             <span class="text-light px-3">Students Section</span>
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('resquest.create') }}">
                     </i><i class="fas fa-tools"></i>
                     <span>Equipment Request</span></a>
             </li>
+
+            {{-- STUDENT SECTION ENDS--}}
 
 
 

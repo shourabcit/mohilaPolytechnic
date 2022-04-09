@@ -15,20 +15,22 @@
                     <th>Actions</th>
                 </tr>
                 @forelse ($requests as $request)
-                <tr
-                    style=" {{ $request->user->equipment_provides_count > 0 ? 'background-color: rgb(255, 119, 119);color:white' ? '' }}">
+                <tr class="{{ $request->user->equipment_provides_count > 0 ? 'bg-danger text-light' : ''}}">
                     <td>{{ $loop->index +1 }}</td>
                     <td>
                         <img src="{{ $request->user->img }}" alt="{{ $request->user->name }}" style="height: 100px">
                     </td>
                     <td>
-                        <a href="#" class="text-light">{{ $request->user->name }}</a>
+                        <a href="#"
+                            class="{{ $request->user->equipment_provides_count > 0 ? 'text-light' : 'text-dark' }}">{{
+                            $request->user->name }}</a>
                     </td>
                     <td>
                         {{ $request->user->equipment_provides_count }}
                     </td>
                     <td>
-                        <a href="#" class="btn btn-primary btn-sm">View</a>
+                        <a href="{{ route('clearence.view', ['id'=>$request->user->id, 'count'=>$request->user->equipment_provides_count]) }}"
+                            class="btn btn-primary btn-sm">View</a>
                         <a href="#" class="btn btn-success btn-sm">Approve</a>
                     </td>
                 </tr>

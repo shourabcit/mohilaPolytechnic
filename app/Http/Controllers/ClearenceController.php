@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Clearence;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class ClearenceController extends Controller
         } else {
 
             $clearence = new Clearence();
-            $clearence->user_id = 1;
+            $clearence->user_id = $id;
             $clearence->save();
             return back()->with('success', 'Request Has been send.');
         }
@@ -42,5 +43,17 @@ class ClearenceController extends Controller
 
         // dd($requests);
         return view('backend.clearence.clearenceRequest', compact('requests'));
+    }
+
+
+
+    /**
+     * STUDENT CLEARENCE INFO VIEW
+     */
+    public function studentClearenceView($id, $count)
+    {
+        $studentInfo = User::with('equipmentProvides.equipment')->with('student')->find($id);
+        // dd($studentInfo);
+        return view('backend.clearence.studentView', compact('studentInfo'));
     }
 }

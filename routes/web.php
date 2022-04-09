@@ -56,5 +56,8 @@ Route::GET('/request/accepted/{id}', [RequestEquipmentController::class, 'reques
 //REQUEST FOR CLEARENCE SYSTEM
 Route::GET('/clearence/{id}', [ClearenceController::class, 'getClearenceRequest'])->name('clearence.getRequest');
 
+//Clearence Info View for student route
+Route::GET('/clear/view/{id}/{count}', [ClearenceController::class, 'studentClearenceView'])->name('clearence.view');
+
 // CLEARENCE REQUEST FOR CRAFT INSPECTOR
 Route::GET('/clear/craft', [ClearenceController::class, 'craftClearence'])->name('clearence.craft');
