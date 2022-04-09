@@ -22,6 +22,7 @@
 </div>
 
 
+@auth
 <section id="myActivityLog">
     <div class="container-fluid">
         <div class="card col-lg-8 mx-auto px-0 mt-5 shadow">
@@ -80,6 +81,7 @@
     </div>
 </section>
 
+@endauth
 
 
 

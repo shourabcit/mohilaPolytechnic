@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\RolePermissionSeeder;
 use Database\Seeders\EquipmentProvideSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,7 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UserSeeder::class);
+        $this->call([
+            UserSeeder::class,
+            AdminSeeder::class,
+            RolePermissionSeeder::class,
+        ]);
         // $this->call(EquipmentProvideSeeder::class);
     }
 }

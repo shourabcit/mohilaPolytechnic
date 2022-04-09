@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\admin\AdminAuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\UserController;
@@ -61,3 +62,15 @@ Route::GET('/clear/view/{id}/{count}', [ClearenceController::class, 'studentClea
 
 // CLEARENCE REQUEST FOR CRAFT INSPECTOR
 Route::GET('/clear/craft', [ClearenceController::class, 'craftClearence'])->name('clearence.craft');
+
+
+//Admin Login & Register
+Route::get('admin', [AdminAuthController::class, 'login_index'])->name('admin.login.index');
+Route::post('admin', [AdminAuthController::class, 'login'])->name('admin.login');
+
+
+Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
+    Route::get('/dashboard', [AdminAuthController::class,'dashboard'])->name('dashboard');
+
+    Route::post('logout',[AdminAuthController::class,'logout'])->name('logout');
+});
