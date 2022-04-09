@@ -7,6 +7,7 @@ use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\RequestEquipment;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\EquipmentController;
+use App\Http\Controllers\backend\NotificationController;
 use App\Http\Controllers\backend\RequestEquipmentController;
 use App\Http\Controllers\ClearenceController;
 use App\Models\Clearence;
@@ -99,3 +100,9 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
 
     Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
+
+
+
+
+// NOTIFICATIONS CLEAR ROUTE
+Route::GET('/notification/clear', [NotificationController::class, 'notifyClear'])->name('notify.clear');

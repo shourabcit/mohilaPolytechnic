@@ -5,7 +5,7 @@
         <div class="card-header bg-primary text-light">
             <h3>All Clearence Requests</h3>
         </div>
-        <div class="card-body">
+        <div class="card-body pb-0">
             <table class="table text-center table-md-responsive">
                 <tr>
                     <th>#</th>
@@ -52,7 +52,11 @@
                     </td>
                 </tr>
                 @empty
-
+                <tr>
+                    <td colspan="5">
+                        <p class="pt-2">No Clearence Request Found !</p>
+                    </td>
+                </tr>
                 @endforelse
 
 

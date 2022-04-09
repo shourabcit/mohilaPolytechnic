@@ -14,7 +14,12 @@
                     </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <p>Welcome to your Dashboard {{ Auth::guard('admin')->user() ? Auth::guard('admin')->user()->name :
+                        Auth::user()->name }}.
+
+
+
+                    </p>
                 </div>
             </div>
         </div>
