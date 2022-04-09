@@ -11,10 +11,31 @@
                     <th>#</th>
                     <th>Student Image</th>
                     <th>Student Name</th>
-                    <th>Lab Name</th>
-                    <th>Equipments</th>
+                    <th>Equipments Have</th>
                     <th>Actions</th>
                 </tr>
+                @forelse ($requests as $request)
+                <tr
+                    style=" {{ $request->user->equipment_provides_count > 0 ? 'background-color: rgb(255, 119, 119);color:white' ? '' }}">
+                    <td>{{ $loop->index +1 }}</td>
+                    <td>
+                        <img src="{{ $request->user->img }}" alt="{{ $request->user->name }}" style="height: 100px">
+                    </td>
+                    <td>
+                        <a href="#" class="text-light">{{ $request->user->name }}</a>
+                    </td>
+                    <td>
+                        {{ $request->user->equipment_provides_count }}
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-sm">View</a>
+                        <a href="#" class="btn btn-success btn-sm">Approve</a>
+                    </td>
+                </tr>
+                @empty
+
+                @endforelse
+
 
             </table>
 

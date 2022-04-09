@@ -35,11 +35,12 @@ class ClearenceController extends Controller
             ->where('principal', 0)
             ->with(['user' => function ($q) {
                 $q->withCount(['equipmentProvides' => function ($query) {
-                    $query->where('isReturn', 0);
+                    $query->where('isReturn', 0)->where('approved', 1)->orWhere('isReturn', 2);
                 }]);
             }])
-            ->get();
+            ->paginate(15);
 
-        dd($requests);
+        // dd($requests);
+        return view('backend.clearence.clearenceRequest', compact('requests'));
     }
 }

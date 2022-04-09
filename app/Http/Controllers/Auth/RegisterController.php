@@ -55,7 +55,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone' => ['required', 'numeric', 'unique:users,phone', 'min:11', 'max:11'],
+            'phone' => ['required',  'unique:users,phone'],
             'img' => ['required', 'mimes:jpg,svg,png,jpeg,webp', 'dimensions:max_width=300,max_height=300']
 
         ]);
@@ -69,16 +69,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
-        $extension=$data['img']->getClientOriginalExtension();
+
+        $extension = $data['img']->getClientOriginalExtension();
         $path = public_path('/storage/image/');
-        if(!File::exists($path)){
+        if (!File::exists($path)) {
             mkdir($path);
         }
-        $img_name= url('/'). '/storage/image/'.uniqid().'.'.$extension;
+        $img_name = url('/') . '/storage/image/' . uniqid() . '.' . $extension;
         $data['img']->move($path, $img_name);
-        
-            $user =  User::create([
+
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -87,7 +87,7 @@ class RegisterController extends Controller
 
         ]);
         $student = new Student();
-        $student->user_id= $user['id'];
+        $student->user_id = $user['id'];
         $student->department_id = $data['department_id'];
         $student->board_roll = $data['board_roll'];
         $student->registation_number = $data['regi_number'];
@@ -96,6 +96,5 @@ class RegisterController extends Controller
         $student->exam_year = $data['exam_year'];
         $student->save();
         return $user;
-    
     }
 }
