@@ -20,7 +20,7 @@ class RolePermissionSeeder extends Seeder
             'admin',
             'craft instructor',
             'workshop super',
-            'dept head',
+            'dept. head',
             'register',
             'vice principal',
             'principal'

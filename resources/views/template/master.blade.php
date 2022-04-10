@@ -20,6 +20,7 @@
             rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <!-- Custom styles for this template-->
+        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
     </head>
@@ -63,7 +64,7 @@
                     </a>
                     <div id="user_reg" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            {{-- <a class="collapse-item" href="{{ route('admin.create') }}">Add User</a> --}}
+                            <a class="collapse-item" href="{{ route('admin.create') }}">Add User</a>
                             <a class="collapse-item" href="{{ route('admin.index') }}">All User</a>
 
                         </div>

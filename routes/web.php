@@ -102,7 +102,9 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
 
     //Admin CRUD Route
-    Route::get('user',[AdminController::class,'index'])->name('index');
+    Route::get('employee',[AdminController::class,'index'])->name('index');
+    Route::get('create',[AdminController::class,'create'])->name('create');
+    Route::post('store',[AdminController::class,'store'])->name('store');
 });
 
 
