@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\backend\admin\AdminAuthController;
+use App\Models\Clearence;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClearenceController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\RequestEquipment;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\EquipmentController;
+use App\Http\Controllers\backend\admin\AdminController;
 use App\Http\Controllers\backend\NotificationController;
+use App\Http\Controllers\backend\admin\AdminAuthController;
 use App\Http\Controllers\backend\RequestEquipmentController;
-use App\Http\Controllers\ClearenceController;
-use App\Models\Clearence;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -99,6 +100,9 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::get('/dashboard', [AdminAuthController::class, 'dashboard'])->name('dashboard');
 
     Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
+
+    //Admin CRUD Route
+    Route::get('user',[AdminController::class,'index'])->name('index');
 });
 
 
