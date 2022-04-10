@@ -17,7 +17,7 @@ class RolePermissionSeeder extends Seeder
     public function run()
     {
         $roles = [
-            'super admin',
+            'admin',
             'craft instructor',
             'workshop super',
             'dept head',
@@ -31,8 +31,8 @@ class RolePermissionSeeder extends Seeder
         }
         Role::create(['name' => 'student']);
 
-        Admin::find(1)->assignRole('super admin');
-        Admin::find(2)->assignRole('super admin');
+        Admin::find(1)->assignRole('admin');
+        Admin::find(2)->assignRole('admin');
         User::find(1)->assignRole('student');
         User::find(2)->assignRole('student');
     }
