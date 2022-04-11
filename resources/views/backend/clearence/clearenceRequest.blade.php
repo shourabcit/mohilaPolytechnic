@@ -36,7 +36,7 @@
                         @elseif (Auth::guard('admin')->user()->getRoleNames()->first() == 'workshop super')
                         <a href="{{ route('approve.worksuper', $request->id) }}"
                             class="btn btn-success btn-sm">Approve</a>
-                        @elseif (Auth::guard('admin')->user()->getRoleNames()->first() == 'dept head')
+                        @elseif (Auth::guard('admin')->user()->getRoleNames()->first() == 'dept. head')
                         <a href="{{ route('approve.depthead', $request->id) }}"
                             class="btn btn-success btn-sm">Approve</a>
                         @elseif (Auth::guard('admin')->user()->getRoleNames()->first() == 'register')

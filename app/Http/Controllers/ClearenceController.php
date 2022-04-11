@@ -23,6 +23,7 @@ class ClearenceController extends Controller
             $clearence->save();
             $user = User::find($id, ['name', 'img']);
             $craftInspectors = Admin::role('craft instructor')->get();
+
             Notification::send($craftInspectors, new CraftNotify($user->name, $user->img, route('clearence.craft')));
             return back()->with('success', 'Request Has been send.');
         }
@@ -104,7 +105,7 @@ class ClearenceController extends Controller
         // sending notification
         $userId = $clearence->user_id;
         $user = User::find($userId, ['img', 'name']);
-        $workSuper = Admin::role('dept head')->get();
+        $workSuper = Admin::role('dept. head')->get();
         Notification::send($workSuper, new CraftNotify($user->name, $user->img, route('clearence.depthead')));
         // sending notification end
 
