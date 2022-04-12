@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class StudentController extends Controller
 {
@@ -14,7 +15,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $unApproveStudents = User::where('approved', 0)->with('student')->simplePaginate(30);
+        return view('backend.student.index', compact('unApproveStudents'));
     }
 
     /**
@@ -46,7 +48,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        $studentInfo = User::with('student')->find($id);
+        return view('backend.student.studentView', compact('studentInfo'));
     }
 
     /**
@@ -81,5 +84,27 @@ class StudentController extends Controller
     public function destroy($id)
     {
         //
+    }
+    /**
+     * APPROVING STUDENT
+     */
+    public function approval($id)
+    {
+        $user = User::find($id);
+        $user->approved = 1;
+        $user->save();
+        return back();
+    }
+    /**
+     * STUDENT SEARCH
+     */
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        // dd($request->all());
+        $unApproveStudents = User::where('name', 'LIKE', '%' . $search . '%')->where('approved', 0)->orWhereHas('student', function ($q) use ($search) {
+            $q->where('board_roll', $search)->orWhere('registation_number', $search);
+        })->simplePaginate(30);
+        return view('backend.student.index', compact('unApproveStudents'));
     }
 }

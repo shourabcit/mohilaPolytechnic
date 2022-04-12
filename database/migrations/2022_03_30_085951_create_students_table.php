@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             // $table->foreignId('department_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('department_id');
+            $table->string('department_id');
             $table->integer('board_roll');
             $table->integer('registation_number');
             $table->string('session');

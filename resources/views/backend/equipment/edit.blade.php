@@ -19,7 +19,7 @@
             @enderror
 
             <input type="text" name="added_by" class="form-control mb-3" placeholder="Updated By" readonly
-                value="{{ Auth::user()->name }}">
+                value="{{ Auth::guard('admin')->user()->name }}">
             @error('')
             <span class="text-danger">{{ $message }}</span>
             @enderror

@@ -79,6 +79,14 @@
                     <span>Departments</span></a>
             </li>
 
+            {{-- student approvement --}}
+            <hr class="sidebar-divider">
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('student.index') }}">
+                    <i class="fas fa-user"></i>
+                    <span>Students Approval</span></a>
+            </li>
+            {{-- student approvement --}}
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Nav Item - Pages Collapse Menu -->

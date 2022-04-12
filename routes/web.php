@@ -12,6 +12,7 @@ use App\Http\Controllers\backend\admin\AdminController;
 use App\Http\Controllers\backend\NotificationController;
 use App\Http\Controllers\backend\admin\AdminAuthController;
 use App\Http\Controllers\backend\RequestEquipmentController;
+use App\Http\Controllers\backend\StudentController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -102,12 +103,17 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
 
     //Admin CRUD Route
-    Route::get('employee',[AdminController::class,'index'])->name('index');
-    Route::get('create',[AdminController::class,'create'])->name('create');
-    Route::post('store',[AdminController::class,'store'])->name('store');
+    Route::get('employee', [AdminController::class, 'index'])->name('index');
+    Route::get('create', [AdminController::class, 'create'])->name('create');
+    Route::post('store', [AdminController::class, 'store'])->name('store');
 });
 
 
+
+// ALL STUDENT APPROVAL
+Route::GET('/student/approval/{id}', [StudentController::class, 'approval'])->name('student.approval');
+Route::GET('/student/search', [StudentController::class, 'search'])->name('student.search');
+Route::resource('/student', StudentController::class);
 
 
 // NOTIFICATIONS CLEAR ROUTE
