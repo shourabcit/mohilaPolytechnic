@@ -13,7 +13,7 @@
                 <form action="" method="POST">
                     @csrf
                     @method('PUT')
-                    <input type="text" class="form-control mb-3" name="name" value="" placeholder="Category Name">
+                    <input type="text" class="form-control mb-3" name="name" value="" placeholder="Department Name">
 
                     <select name="parent_id" class="select2 mb-3 edit_modal_select w-100 form-control">
                         <option value="">No Parent Department</option>
@@ -44,7 +44,7 @@
                 @csrf
                 <div class="row ">
                     <div class="col-xl-4 mb-3">
-                        <input type="text" name="name" placeholder="Category Name | electronics" class="form-control">
+                        <input type="text" name="name" placeholder="Department Name | 66, Computer" class="form-control">
                         @error('name')
                         <span class="text-danger">
                             {{ $message }}
@@ -155,7 +155,7 @@
 
         $('button#category_edit').on('click', editCategory);
 
-        
+
         // Category Edit Function
 
         $('#saveBtn').click(function(){
@@ -174,8 +174,8 @@
             let newPath = path.replace(':id', itemId);
             $.ajax({
                 url: newPath,
-                
-                
+
+
             type: "GET",
             data: {_token:_token, itemId:itemId},
             datatype: 'json',
@@ -184,7 +184,7 @@
                 console.log(data);
             $("#editModal form input[name='name']").val(data[0].name);
             let parent = data[0].parent_id == null ? 'No Parent Category' : data[1].name;
-            
+
             $('.select2-selection__rendered').text(parent);
             let update = "{{ route('category.update', ':itemId') }}";
             let updateRoute = update.replace(':itemId', data[0].id);
@@ -216,7 +216,7 @@
             confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
             if (result.isConfirmed) {
-                
+
                 $(this).siblings('.categoryDelete').submit();
            //$('.categoryDelete').submit();
 

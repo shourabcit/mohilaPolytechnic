@@ -29,5 +29,12 @@ class AdminSeeder extends Seeder
             'img' => 'https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg',
             'password' => Hash::make('password'),
         ]);
+        Admin::create([
+            'name' => 'Salam Sir',
+            'email' => 'salam.ctgmohilapoly@gmail.com',
+            'phone' => '01975624263',
+            'img' => 'https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg',
+            'password' => Hash::make('password'),
+        ]);
     }
 }

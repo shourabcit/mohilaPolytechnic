@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-md-8 border-left px-lg-4">
                     <div class="student_info">
-                       
+
                         <h2 class="text-dark text-uppercase">{{ $studentInfo->name }} </h2>
                         <p>Email Address : - {{ $studentInfo->email }}</p>
                         <p>Phone Number: - {{ $studentInfo->phone }}</p>
@@ -29,6 +29,9 @@
                         <p>Semister: - {{ $studentInfo->student->semester }}</p>
                         <p>Exam Year: - {{ $studentInfo->student->exam_year }}</p>
                         @endif
+                    </div>
+                    <div>
+                        <a href="{{ route('student.approval', $studentInfo->id) }}" class="btn btn-sm btn-success">Approve</a>
                     </div>
 
                 </div>
