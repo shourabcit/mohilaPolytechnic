@@ -7,6 +7,11 @@
          <a href="{{ route('admin.create') }}" class="btn btn-success">Add New Employee</a>
       </div>
       <div class="card-body">
+         @if (Session::has('success_delete'))
+            <div class="alert alert-success">
+               {{ Session::get('success_delete') }}
+            </div>
+         @endif
          <div class="table-responsive">
             <table class="table table-bordered table-hover">
                <tr class="text-center">
@@ -21,15 +26,19 @@
                   <td>{{ $employee->name }}</td>
                   <td>{{ $employee->getRoleNames()->first(); }}</td>
                   <td>
-                     <a href="#" class="btn btn-primary">
+                     <a href="{{ route('admin.show',$employee->id) }}" class="btn btn-primary">
                         <i class="fas fa-eye"></i>
                      </a>
-                     <a href="#" class="btn btn-warning">
+                     <a href="{{ route('admin.edit',$employee->id) }}" class="btn btn-warning">
                         <i class="fas fa-edit"></i>
                      </a>
-                     <a href="#" class="btn btn-danger">
+                     <a href="{{ route('admin.delete',$employee->id) }}" class="btn btn-danger" onclick="preventDefault();document.getElementById('admin_dlt_form').submit()">
                         <i class="fas fa-trash"></i>
                      </a>
+                     <form action="{{ route('admin.delete',$employee->id) }}" id="admin_dlt_form" class="d-none">
+                        @csrf
+                        @method('DELETE')
+                     </form>
                   </td>
                </tr>
                @endforeach

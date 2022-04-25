@@ -50,7 +50,7 @@ class EquipmentController extends Controller
 
         $equipment = new Equipment();
         $equipment->equipment_name = $request->equipment_name;
-        $equipment->added_by = Auth::user()->id;
+        $equipment->added_by = Auth::guard('admin')->user()->id;
         $equipment->save();
         return back();
     }

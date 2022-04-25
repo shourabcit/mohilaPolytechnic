@@ -16,17 +16,9 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'shourab',
-            'email' => 'shourab.cit.bd@gmail.com',
-            'phone' => '01997492233',
-            'img' => 'https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg',
-            'approved' => 1,
-            'password' => Hash::make('password'),
-        ]);
-        User::create([
-            'name' => 'zahid',
-            'email' => 'zahid.cit.bd@gmail.com',
-            'phone' => '01847422963',
+            'name' => 'Shaharia Islam',
+            'email' => 'shahariaislam2@gmail.com',
+            'phone' => '01885375989',
             'img' => 'https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg',
             'approved' => 1,
             'password' => Hash::make('password'),

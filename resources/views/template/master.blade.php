@@ -63,6 +63,16 @@
                 </li>
                 {{-- DEPT HEAD SECTION ENDS --}}
 
+                {{-- DEPT HEAD SECTION STARTS --}}
+                @hasanyrole('dept. head|admin','admin')
+                <hr class="sidebar-divider">
+                <span class="text-light px-3">Department Head</span>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ route('clearence.depthead') }}">
+                    </i><i class="fas fa-tools"></i>
+                    <span>Clearence Requests</span></a>
+                </li>
+                {{-- DEPT HEAD SECTION ENDS --}}
                 {{-- Add User --}}
                 <hr class="sidebar-divider">
                 <span class="text-light px-3">User Management</span>
@@ -80,9 +90,11 @@
                         </div>
                     </div>
                 </li>
+                @endhasanyrole
                 {{-- // Add User --}}
+
+                @hasanyrole('dept. head|admin','admin')
                 <hr class="sidebar-divider">
-                <span class="text-light px-3">Department Management</span>
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('category.create') }}">
                         <i class="far fa-building"></i>
@@ -160,10 +172,73 @@
                 </li>
                 @endhasanyrole
                 {{-- WORKSHOP SUPER SECTION ENDS --}}
+                @endhasanyrole
+                @hasanyrole('dept. head|admin','admin')
+                {{-- student approvement --}}
+                <hr class="sidebar-divider">
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ route('student.index') }}">
+                        <i class="fas fa-user"></i>
+                        <span>Students Approval</span></a>
+                </li>
+                {{-- student approvement --}}
+                @endhasanyrole
+                @hasanyrole('craft instructor|admin','admin')
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-archive"></i>
+                        <span>Equipments</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="{{ route('equipment.create') }}">Add Equipment</a>
+                            <a class="collapse-item" href="{{ route('equipment.index') }}">All Equipment</a>
+                            <a class="collapse-item" href="{{ route('equipment.trash') }}">All Trash Equipment</a>
+
+                        </div>
+                    </div>
+                </li>
+                @endhasanyrole
+                @hasanyrole('craft instructor|admin','admin')
+                <hr class="sidebar-divider">
+
+                <span class="text-light px-3">Craft Inspector Section</span>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ route('resquest.index') }}">
+                        </i><i class="fas fa-tools"></i>
+                        <span>Requested Equipments</span></a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ route('request.confirm.request') }}">
+                        </i><i class="fas fa-tools"></i>
+                        <span>Returned Equipments</span></a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ route('clearence.craft') }}">
+                        </i><i class="fas fa-tools"></i>
+                        <span>Clearence Requests</span></a>
+                </li>
+                @endhasanyrole
+                {{-- CRAFT INSPECTOR SECTION ENDS --}}
+                {{-- WORKSHOP SUPER SECTION STARTS --}}
+                @hasanyrole('workshop super|admin', 'admin')
+                <hr class="sidebar-divider">
+                <span class="text-light px-3">Workshop Super Section</span>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{ route('clearence.worksuper') }}">
+                        </i><i class="fas fa-tools"></i>
+                        <span>Clearence Requests</span></a>
+                </li>
+                @endhasanyrole
+                {{-- WORKSHOP SUPER SECTION ENDS --}}
 
 
                 {{-- REGISTER SECTION STARTS --}}
-                @hasanyrole('register|admin')
+                @hasanyrole('register|admin','admin')
                 <hr class="sidebar-divider">
                 <span class="text-light px-3">Register Section</span>
                 <li class="nav-item ">
@@ -174,10 +249,11 @@
                 @endhasanyrole
                 {{-- REGISTER SECTION ENDS --}}
 
+
                 {{-- Vice Principal SECTION STARTS --}}
                 @hasanyrole('vice principal|admin','admin')
                 <hr class="sidebar-divider">
-                <span class="text-light px-3">Vice Principal</span>
+                <span class="text-light px-3">Vice Principal Section</span>
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('clearence.viceprincipal') }}">
                         </i><i class="fas fa-tools"></i>
@@ -188,10 +264,10 @@
 
 
                 {{-- Principal SECTION STARTS --}}
-                @hasanyrole('principal|admin','admin','web')
+                @hasanyrole('principal|admin','admin')
 
                 <hr class="sidebar-divider">
-                <span class="text-light px-3">Principal</span>
+                <span class="text-light px-3">Principal Section</span>
                 <li class="nav-item ">
                     <a class="nav-link" href="{{ route('clearence.principal') }}">
                         </i><i class="fas fa-tools"></i>
@@ -199,16 +275,9 @@
                 </li>
                 @endhasanyrole
                 {{-- Vice Principal SECTION ENDS --}}
-                @if (Auth::guard('admin')->check())
-                {{-- <span class="text-light px-3">{{ Auth::user()->roles()->get() }}</span>p --}}
 
-                @else
-
-                <span class="text-light px-3">Student Guard  Section</span>
-
-                @endif
                 {{-- STUDENT SECTION START--}}
-                @role('student','web')
+                @auth
                 <hr class="sidebar-divider">
                 <span class="text-light px-3">Students Section</span>
                 <li class="nav-item ">
@@ -216,7 +285,7 @@
                         </i><i class="fas fa-tools"></i>
                         <span>Equipment Request</span></a>
                 </li>
-                @endrole
+                @endauth
 
 
                 {{-- STUDENT SECTION ENDS--}}

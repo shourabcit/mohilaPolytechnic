@@ -108,6 +108,10 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::post('store', [AdminController::class, 'store'])->name('store');
 
     Route::get('form',[AdminController::class,'form'])->name('form');
+    Route::get('show/{id}', [AdminController::class, 'show'])->name('show');
+    Route::get('edit/{id}', [AdminController::class, 'edit'])->name('edit');
+    Route::put('update/{id}', [AdminController::class, 'update'])->name('update');
+    Route::get('delete/{id}', [AdminController::class, 'delete'])->name('delete');
 });
 
 

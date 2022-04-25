@@ -93,7 +93,7 @@ class StudentController extends Controller
         $user = User::find($id);
         $user->approved = 1;
         $user->save();
-        return back();
+        return redirect()->route('student.index');
     }
     /**
      * STUDENT SEARCH

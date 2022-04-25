@@ -33,7 +33,7 @@ class RolePermissionSeeder extends Seeder
 
         Admin::find(1)->assignRole('admin');
         Admin::find(2)->assignRole('admin');
+        Admin::find(3)->assignRole('dept. head');
         User::find(1)->assignRole('student');
-        User::find(2)->assignRole('student');
     }
 }

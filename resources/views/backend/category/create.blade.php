@@ -13,7 +13,7 @@
                 <form action="" method="POST">
                     @csrf
                     @method('PUT')
-                    <input type="text" class="form-control mb-3" name="name" value="" placeholder="Category Name">
+                    <input type="text" class="form-control mb-3" name="name" value="" placeholder="Department Name">
 
                     <select name="parent_id" class="select2 mb-3 edit_modal_select w-100 form-control">
                         <option value="">No Parent Department</option>
@@ -44,7 +44,7 @@
                 @csrf
                 <div class="row ">
                     <div class="col-xl-4 mb-3">
-                        <input type="text" name="name" placeholder="Department Name | Computer" class="form-control">
+                        <input type="text" name="name" placeholder="Department Name | 66, Computer" class="form-control">
                         @error('name')
                         <span class="text-danger">
                             {{ $message }}
