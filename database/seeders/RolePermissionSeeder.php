@@ -18,12 +18,12 @@ class RolePermissionSeeder extends Seeder
     {
         $roles = [
             'admin',
-            'craft instructor',
-            'workshop super',
-            'dept. head',
-            'register',
+            'principal',
             'vice principal',
-            'principal'
+            'register',
+            'dept. head',
+            'workshop super',
+            'craft instructor',
         ];
 
         foreach($roles as $role){

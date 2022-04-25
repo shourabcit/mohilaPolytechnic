@@ -44,4 +44,9 @@ class AdminController extends Controller
             'password' => Hash::make($request->password),
         ]);
     }
+
+    public function form()
+    {
+        return view('backend.pdf.form');
+    }
 }

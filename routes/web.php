@@ -106,6 +106,8 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::get('employee', [AdminController::class, 'index'])->name('index');
     Route::get('create', [AdminController::class, 'create'])->name('create');
     Route::post('store', [AdminController::class, 'store'])->name('store');
+
+    Route::get('form',[AdminController::class,'form'])->name('form');
 });
 
 
